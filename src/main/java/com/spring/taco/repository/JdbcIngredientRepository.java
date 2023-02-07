@@ -1,5 +1,5 @@
 package com.spring.taco.repository;
-
+/*
 import com.spring.taco.model.Ingredient;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -51,3 +51,4 @@ public class JdbcIngredientRepository implements IngredientRepository {
         return ingredient; }
 
 }
+*/

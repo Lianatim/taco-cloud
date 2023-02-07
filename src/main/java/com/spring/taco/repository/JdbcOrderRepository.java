@@ -1,11 +1,11 @@
 package com.spring.taco.repository;
-
+/*
 import java.sql.Types;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
+import com.spring.taco.model.Ingredient;
 import com.spring.taco.model.IngredientRef;
 import com.spring.taco.model.Taco;
 import com.spring.taco.model.TacoOrder;
@@ -109,4 +109,11 @@ public class JdbcOrderRepository implements OrderRepository {
                     ingredientRef.getIngredient(), tacoId, key++);
         }
     }
+
+    @Override
+    public <S extends Ingredient> Iterable<S> saveAll(Iterable<S> entities) {
+        return null;
+    }
 }
+
+ */

@@ -1,6 +1,7 @@
 package com.spring.taco.controller;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import com.spring.taco.model.Ingredient.Type;
 import com.spring.taco.model.Ingredient;
@@ -32,7 +33,8 @@ public class DesignTacoController {
 
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
-        Iterable<Ingredient> ingredients = ingredientRepo.findAll();
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredientRepo.findAll().forEach(i -> ingredients.add(i));
         Type[] types = Ingredient.Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
@@ -54,15 +56,12 @@ public class DesignTacoController {
         return "design";
     }
 
-    private Iterable<Ingredient> filterByType(Iterable<Ingredient> ingredients, Type type) {
-        Iterator<Ingredient> it = ingredients.iterator();
-        while (it.hasNext()) {
-            Ingredient ingredient = it.next();
-            if (!Objects.equals(ingredient.getType(), type)) {
-                it.remove();
-            }
-        }
-        return ingredients;
+    private Iterable<Ingredient> filterByType(
+            List<Ingredient> ingredients, Type type) {
+        return ingredients
+                .stream()
+                .filter(x -> x.getType().equals(type))
+                .collect(Collectors.toList());
     }
 
     @PostMapping
